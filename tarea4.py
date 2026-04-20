@@ -84,10 +84,82 @@ class OperacionNoPermitidaError(SoftwareFJError):
         )
 
 
+# Sección 2 – Logger (Registro de eventos del archivo)
+# Escribe cada evento o error en un archivo de texto con fecha y hora.
+
+class Logger:
+
+    #Gestiona la escritura de eventos y errores en un archivo de log.
+    #El archivo se crea automáticamente si no existe.
+    #Cada línea tiene formato:  [YYYY-MM-DD HH:MM:SS] [NIVEL] mensaje
+    
+
+    # Niveles de log disponibles
+    INFO  = "INFO "    # Evento normal (se añaden espacios para alinear columnas)
+    WARN  = "WARN "    # Advertencia
+    ERROR = "ERROR"    # Error grave
+
+    def __init__(self, ruta_archivo: str = "software_fj.log"):
+        
+    # Inicializa el logger con la ruta del archivo donde se guardarán los eventos.
+    # Si la carpeta no existe se intenta crear.
+        
+        self.ruta = ruta_archivo            # Ruta completa o nombre del archivo de log
+
+        try:
+            # Intentamos crear/abrir el archivo en modo 'append' (agregar al final)
+            with open(self.ruta, "a", encoding="utf-8") as f:
+                # Escribimos una línea de separación al inicio de cada sesión
+                f.write(f"\n{'='*70}\n")
+                f.write(f"  SESIÓN INICIADA: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write(f"{'='*70}\n")
+        except OSError as e:
+            # Si no se puede crear el archivo, mostramos advertencia en consola pero no detenemos el programa
+            print(f"[LOGGER] Advertencia: no se pudo crear el archivo de log '{self.ruta}': {e}")
+
+    def _escribir(self, nivel: str, mensaje: str):
+        
+        #Método interno que escribe una línea en el archivo de log.
+        #También imprime en la consola para depuración.
+         
+        # Construimos la línea con formato estándar
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        linea = f"[{timestamp}] [{nivel}] {mensaje}\n"
+
+        try:
+        # Abrimos el archivo en modo 'append' para no sobreescribir
+            with open(self.ruta, "a", encoding="utf-8") as f:
+                f.write(linea)
+        except OSError:
+        # Si el archivo no está disponible, solo mostramos en consola
+            pass
+
+        # Imprimimos en consola sin salto de línea extra (linea ya lo tiene)
+        print(linea, end="")
+
+    def info(self, mensaje: str):
+        #Registra un evento informativo normal.
+        self._escribir(self.INFO, mensaje)
+
+    def warn(self, mensaje: str):
+        # Registra una advertencia (algo puede salir mal).
+        self._escribir(self.WARN, mensaje)
+
+    def error(self, mensaje: str, excepcion: Optional[Exception] = None):
+       
+    #Registra un error. Si se proporciona la excepción, agrega su tipo
+    #y mensaje para tener más contexto en el log.
+        
+        if excepcion:
+            # Incluimos el tipo de excepción y su mensaje completo
+            detalle = f"{mensaje} → {type(excepcion).__name__}: {excepcion}"
+        else:
+            detalle = mensaje
+        self._escribir(self.ERROR, detalle)
 
 
 
-# Sección 2 – Clase abstracta Servicio y servicios especializados
+# Sección 3 – Clase abstracta Servicio y servicios especializados
 # Implementa polimorfismo mediante métodos sobrescritos en cada subclase.
 
 
