@@ -157,9 +157,60 @@ class Logger:
             detalle = mensaje
         self._escribir(self.ERROR, detalle)
 
+# Sección 3 – Clase abstracta base
+
+class EntidadBase(ABC):
+   
+    #Clase abstracta raíz del sistema.
+    #Todas las entidades (Cliente, Servicio, Reserva) heredan de aquí.
+    #Garantiza que cada entidad tenga un identificador único y pueda
+    #describirse de forma legible.
+    
+
+    # Contador de clase compartido entre TODAS las instancias de EntidadBase
+    # Se incrementa cada vez que se crea una nueva entidad
+    _contador_global: int = 0
+
+    def __init__(self):
+        # Incrementamos el contador y asignamos un ID único a esta instancia
+        EntidadBase._contador_global += 1
+        self._id = EntidadBase._contador_global   # ID numérico único
+        # Fecha y hora exacta de creación de la entidad
+        self._fecha_creacion = datetime.datetime.now()
+
+    @property
+    def id(self) -> int:
+     #Propiedad de solo lectura para acceder al ID.
+        return self._id
+
+    @property
+    def fecha_creacion(self) -> datetime.datetime:
+    #Propiedad de solo lectura para acceder a la fecha de creación.
+        return self._fecha_creacion
+
+    @abstractmethod
+    def describir(self) -> str:
+        
+        #Método abstracto: cada clase derivada DEBE implementarlo.
+       #Debe retornar una cadena descriptiva de la entidad.
+        
+        pass  # 'pass' indica que el método no tiene cuerpo aquí; es la subclase quien lo define
+
+    @abstractmethod
+    def validar(self) -> bool:
+        
+       # Método abstracto: cada clase derivada DEBE implementarlo.
+       # Debe retornar True si la entidad es válida, False en caso contrario.
+      
+        pass
+
+    def __repr__(self) -> str:
+        #Representación técnica de la entidad para depuración.
+        return f"{self.__class__.__name__}(id={self._id})"
 
 
-# Sección 3 – Clase abstracta Servicio y servicios especializados
+
+# Sección 4 – Clase abstracta Servicio y servicios especializados
 # Implementa polimorfismo mediante métodos sobrescritos en cada subclase.
 
 
