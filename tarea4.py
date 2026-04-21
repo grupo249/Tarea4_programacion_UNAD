@@ -402,3 +402,47 @@ class AsesoriaEspecializada(Servicio):
             f"Precio: ${self.precio_base:,.2f}/h | "
             f"Rango permitido: {self.DURACION_MINIMA}h – {self.DURACION_MAXIMA}h"
         )
+# ══════════════════════════════════════════════════════════════════════════════
+# Bloque de prueba principal
+# ══════════════════════════════════════════════════════════════════════════════
+
+if __name__ == "__main__":
+    print("=== Probando Servicios ===\n")
+
+    # Prueba ReservaSala
+    try:
+        sala = ReservaSala("Sala Azul", 50000, 10)
+        print(sala.describir())
+        print(f"Costo 2h: ${sala.calcular_costo(2):,.2f}")
+        print(f"Costo con IVA: ${sala.calcular_costo_con_impuesto(2):,.2f}")
+    except SoftwareFJError as e:
+        print(f"Error: {e}")
+
+    print()
+
+    # Prueba AlquilerEquipo
+    try:
+        equipo = AlquilerEquipo("Portátil HP", 20000, "Portátil", 50000)
+        print(equipo.describir())
+        print(f"Costo 3h: ${equipo.calcular_costo(3):,.2f}")
+    except SoftwareFJError as e:
+        print(f"Error: {e}")
+
+    print()
+
+    # Prueba AsesoriaEspecializada
+    try:
+        asesoria = AsesoriaEspecializada("Asesoría Python", 80000, "Programación", "senior")
+        print(asesoria.describir())
+        print(f"Costo 2h: ${asesoria.calcular_costo(2):,.2f}")
+        print(f"Costo con descuento 10%: ${asesoria.calcular_costo_con_descuento(2, 0.10):,.2f}")
+    except SoftwareFJError as e:
+        print(f"Error: {e}")
+
+    print()
+
+    # Prueba con error intencional
+    try:
+        sala_mala = ReservaSala("Sala Roja", 50000, -5)
+    except SoftwareFJError as e:
+        print(f"Error esperado capturado: {e}")
