@@ -525,3 +525,98 @@ class AsesoriaEspecializada(Servicio):
             f"Precio: ${self.precio_base:,.2f}/h | "
             f"Rango permitido: {self.DURACION_MINIMA}h – {self.DURACION_MAXIMA}h"
         )
+    # ══════════════════════════════════════════════════════════════════════════════
+# Sección 5 – Clase Cliente
+# Desarrollado por: Nicol Vanessa Castillo Castillo
+# Curso: Programación 213023 - UNAD
+# Gestiona los datos personales de los clientes de Software FJ
+# con validaciones robustas y encapsulación de datos.
+# ══════════════════════════════════════════════════════════════════════════════
+
+class Cliente(EntidadBase):
+    # Contador para generar IDs únicos tipo CLI-001, CLI-002...
+    _contador_id = 1
+
+    def __init__(self, nombre: str, email: str, telefono: str):
+        super().__init__()  # Inicializa la clase abstracta base EntidadBase
+        # Asignamos ID único al cliente
+        self._id_cliente = f"CLI-{Cliente._contador_id:03d}"
+        Cliente._contador_id += 1
+
+        # Usamos setters para validar cada dato desde el inicio
+        self.nombre = nombre        # Llama al setter de nombre
+        self.email = email          # Llama al setter de email
+        self.telefono = telefono    # Llama al setter de teléfono
+
+        # Lista interna donde se guardan las reservas del cliente
+        self._reservas: List = []
+
+    # --- Getter y Setter de nombre ---
+    @property
+    def nombre(self) -> str:
+        return self._nombre         # Retorna el nombre almacenado
+
+    @nombre.setter
+    def nombre(self, valor: str):
+        try:
+            # El nombre no puede estar vacío ni tener menos de 2 caracteres
+            if not valor or not valor.strip() or len(valor.strip()) < 2:
+                raise ClienteInvalidoError("nombre", str(valor))
+            self._nombre = valor.strip()    # Guardamos sin espacios extras
+        except ClienteInvalidoError:
+            raise   # Relanzamos para que el sistema la capture
+
+    # --- Getter y Setter de email ---
+    @property
+    def email(self) -> str:
+        return self._email          # Retorna el email almacenado
+
+    @email.setter
+    def email(self, valor: str):
+        try:
+            # Validamos formato de email con expresión regular
+            patron = r'^[\w\.-]+@[\w\.-]+\.\w{2,}$'
+            if not valor or not re.match(patron, valor):
+                raise ClienteInvalidoError("email", str(valor))
+            self._email = valor.lower()     # Guardamos en minúsculas
+        except ClienteInvalidoError:
+            raise   # Relanzamos la excepción
+
+    # --- Getter y Setter de teléfono ---
+    @property
+    def telefono(self) -> str:
+        return self._telefono       # Retorna el teléfono almacenado
+
+    @telefono.setter
+    def telefono(self, valor: str):
+        try:
+            # El teléfono debe tener entre 7 y 15 dígitos numéricos
+            if not valor or not valor.strip().isdigit() or not (7 <= len(valor.strip()) <= 15):
+                raise ClienteInvalidoError("telefono", str(valor))
+            self._telefono = valor.strip()  # Guardamos sin espacios
+        except ClienteInvalidoError:
+            raise   # Relanzamos la excepción
+
+    # --- Getter de id_cliente (solo lectura) ---
+    @property
+    def id_cliente(self) -> str:
+        return self._id_cliente     # Retorna el ID del cliente
+
+    # --- Getter de reservas (solo lectura) ---
+    @property
+    def reservas(self) -> List:
+        return list(self._reservas) # Retorna copia de la lista
+
+    def agregar_reserva(self, reserva) -> None:
+        # Agrega una reserva a la lista interna del cliente
+        self._reservas.append(reserva)
+
+    def describir(self) -> str:
+        # Implementación del método abstracto de EntidadBase
+        return (f"Cliente [{self._id_cliente}] - {self._nombre} | "
+                f"Email: {self._email} | Tel: {self._telefono} | "
+                f"Reservas activas: {len(self._reservas)}")
+
+    def __str__(self) -> str:
+        # Representación legible del cliente para mostrar en pantalla
+        return self.describir()
