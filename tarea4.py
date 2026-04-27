@@ -192,7 +192,7 @@ class EntidadBase(ABC):
     def describir(self) -> str:
         
         #Método abstracto: cada clase derivada DEBE implementarlo.
-       #Debe retornar una cadena descriptiva de la entidad.
+        #Debe retornar una cadena descriptiva de la entidad.
         
         pass  # 'pass' indica que el método no tiene cuerpo aquí; es la subclase quien lo define
 
