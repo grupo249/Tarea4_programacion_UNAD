@@ -201,7 +201,7 @@ class EntidadBase(ABC):
         
        # Método abstracto: cada clase derivada DEBE implementarlo.
        # Debe retornar True si la entidad es válida, False en caso contrario.
-      
+        
         pass
 
     def __repr__(self) -> str:
@@ -616,6 +616,12 @@ class Cliente(EntidadBase):
         return (f"Cliente [{self._id_cliente}] - {self._nombre} | "
                 f"Email: {self._email} | Tel: {self._telefono} | "
                 f"Reservas activas: {len(self._reservas)}")
+
+    def validar(self) -> bool:
+        # Implementación del método abstracto de EntidadBase. Retorna True si los campos obligatorios están diligenciados correctamente. Como los setters ya hacen la validación estricta, aquí solo confirmamos que los atributos existan y tengan contenido.
+        if self._nombre and self._email and self._telefono:
+            return True
+        return False
 
     def __str__(self) -> str:
         # Representación legible del cliente para mostrar en pantalla
