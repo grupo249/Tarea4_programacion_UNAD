@@ -25,7 +25,7 @@ Software FJ permite registrar clientes, crear servicios (salas, equipos, asesor√
 ## C√≥mo ejecutar
 
 ```bash
-python Tarea4.py
+python app.py
 ```
 
 ---
