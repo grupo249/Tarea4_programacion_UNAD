@@ -25,15 +25,14 @@ Software FJ permite registrar clientes, crear servicios (salas, equipos, asesor�
 ## Cómo ejecutar
 
 ```bash
-python app.py
+python Tarea4.py
 ```
 
 ---
 
 ## Estructura del proyecto
 
-app.py                # Archivo principal con el GUI
-Tarea4.py             # Archivo principal con toda la lógica 
+Tarea4.py             # Archivo principal con toda la lógica y el GUI
 software_fj.log       # Archivo de log generado automáticamente al ejecutar
 README.md             # Este archivo
 
