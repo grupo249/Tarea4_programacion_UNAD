@@ -32,7 +32,8 @@ python Tarea4.py
 
 ## Estructura del proyecto
 
-Tarea4.py             # Archivo principal con toda la lógica y la GUI
+app.py                # Archivo principal con el GUI
+Tarea4.py             # Archivo principal con toda la lógica 
 software_fj.log       # Archivo de log generado automáticamente al ejecutar
 README.md             # Este archivo
 
