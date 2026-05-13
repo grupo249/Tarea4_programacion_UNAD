@@ -1,0 +1,153 @@
+
+======================================================================
+  SESIÓN INICIADA: 2026-04-27 12:12:11
+======================================================================
+[2026-04-27 12:12:11] [INFO ] GestorReservas inicializado correctamente
+[2026-04-27 12:12:12] [INFO ] Graphical interface started
+
+======================================================================
+  SESIÓN INICIADA: 2026-04-27 12:20:00
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-01 18:12:55
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-01 18:13:03
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-01 18:15:29
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-08 07:35:15
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-08 07:35:28
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-08 07:40:14
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-08 07:40:18
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-08 07:46:24
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-08 08:20:39
+======================================================================
+[2026-05-08 08:21:04] [INFO ] Cliente creado exitosamente: CLI-001
+[2026-05-08 08:21:15] [INFO ] Servicio creado: SRV-0001
+[2026-05-08 08:21:28] [INFO ] Reserva creada para luiza en servicio li
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-13 09:16:59
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-13 09:17:26
+======================================================================
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-13 09:19:54
+======================================================================
+[2026-05-13 09:20:00] [INFO ] ───────────────────────────────────────────────────────
+[2026-05-13 09:20:00] [INFO ] INICIO DE SIMULACIONES AUTOMÁTICAS — Software FJ
+[2026-05-13 09:20:00] [INFO ] ───────────────────────────────────────────────────────
+[2026-05-13 09:20:00] [INFO ] 
+SIM-01: Crear cliente con datos válidos
+[2026-05-13 09:20:00] [INFO ]   Cliente creado → CLI-001 | Ana Torres
+[2026-05-13 09:20:00] [INFO ] 
+SIM-02: Crear cliente con email inválido (sin @)
+[2026-05-13 09:20:00] [INFO ]   Excepción capturada correctamente → [ERR_CLIENTE] Dato inválido en campo 'email': 'correo_sin_arroba' (09:20:00)
+[2026-05-13 09:20:00] [INFO ] 
+SIM-03: Crear cliente con nombre de 1 carácter
+[2026-05-13 09:20:00] [INFO ]   Excepción capturada correctamente → [ERR_CLIENTE] Dato inválido en campo 'nombre': 'X' (09:20:00)
+[2026-05-13 09:20:00] [INFO ] 
+SIM-04: Crear ReservaSala con datos válidos
+[2026-05-13 09:20:00] [INFO ]   Servicio creado → SRV-0001 | Sala Orion
+[2026-05-13 09:20:00] [INFO ] 
+SIM-05: Crear AlquilerEquipo con datos válidos
+[2026-05-13 09:20:00] [INFO ]   Servicio creado → SRV-0002 | Laptop Dell
+[2026-05-13 09:20:00] [INFO ] 
+SIM-06: Crear AsesoriaEspecializada con nivel 'dios' (inválido)
+[2026-05-13 09:20:00] [INFO ]   Excepción capturada correctamente → [ERR_SERVICIO] Servicio 'Consultoría' no disponible. Nivel 'dios' inválido. Use: ['junior', 'senior', 'experto'] (09:20:00)
+[2026-05-13 09:20:00] [INFO ] 
+SIM-07: Crear reserva válida (cliente SIM-01 + sala SIM-04, 3h)
+[2026-05-13 09:20:00] [INFO ]   Reserva creada → Ana Torres | Sala Orion | Total: $150,000.00
+[2026-05-13 09:20:00] [INFO ] 
+SIM-08: Reserva con duración 25h en ReservaSala (máx 12h)
+[2026-05-13 09:20:00] [INFO ]   DuracionInvalidaError capturada → [ERR_DURACION] Duración 25h fuera del rango permitido [1.0h – 12.0h] (09:20:00)
+[2026-05-13 09:20:00] [INFO ] 
+SIM-09: Intentar usar servicio marcado como NO disponible
+[2026-05-13 09:20:00] [INFO ]   ServicioNoDisponibleError capturada → [ERR_SERVICIO] Servicio 'Sala Cerrada' no disponible. El servicio está marcado como no disponible. (09:20:00)
+[2026-05-13 09:20:00] [INFO ] 
+SIM-10: Crear servicio con precio base negativo (-5000)
+[2026-05-13 09:20:00] [INFO ]   Excepción capturada → [ERR_COSTO] Error en cálculo de costo: El precio base no puede ser negativo: -5000 (09:20:00)
+[2026-05-13 09:20:00] [INFO ] 
+SIM-11: Ciclo completo pendiente→confirmada→procesada
+[2026-05-13 09:20:00] [INFO ]   Estados recorridos OK → estado final: procesada
+[2026-05-13 09:20:00] [INFO ] 
+SIM-12: Cancelar una reserva que ya fue cancelada (error esperado)
+[2026-05-13 09:20:00] [INFO ]   EstadoInvalidoError capturada → La reserva ya está cancelada.
+[2026-05-13 09:20:00] [INFO ] 
+───────────────────────────────────────────────────────
+[2026-05-13 09:20:00] [INFO ] RESUMEN: 12 simulaciones | ✅ 12 correctas | ❌ 0 fallidas
+[2026-05-13 09:20:00] [INFO ] Log guardado en: software_fj.log
+[2026-05-13 09:20:00] [INFO ] ───────────────────────────────────────────────────────
+
+======================================================================
+  SESIÓN INICIADA: 2026-05-13 09:22:21
+======================================================================
+[2026-05-13 09:22:27] [INFO ] ───────────────────────────────────────────────────────
+[2026-05-13 09:22:27] [INFO ] INICIO DE SIMULACIONES AUTOMÁTICAS — Software FJ
+[2026-05-13 09:22:27] [INFO ] ───────────────────────────────────────────────────────
+[2026-05-13 09:22:27] [INFO ] 
+SIM-01: Crear cliente con datos válidos
+[2026-05-13 09:22:27] [INFO ]   Cliente creado → CLI-001 | Ana Torres
+[2026-05-13 09:22:27] [INFO ] 
+SIM-02: Crear cliente con email inválido (sin @)
+[2026-05-13 09:22:27] [INFO ]   Excepción capturada correctamente → [ERR_CLIENTE] Dato inválido en campo 'email': 'correo_sin_arroba' (09:22:27)
+[2026-05-13 09:22:27] [INFO ] 
+SIM-03: Crear cliente con nombre de 1 carácter
+[2026-05-13 09:22:27] [INFO ]   Excepción capturada correctamente → [ERR_CLIENTE] Dato inválido en campo 'nombre': 'X' (09:22:27)
+[2026-05-13 09:22:27] [INFO ] 
+SIM-04: Crear ReservaSala con datos válidos
+[2026-05-13 09:22:27] [INFO ]   Servicio creado → SRV-0001 | Sala Orion
+[2026-05-13 09:22:27] [INFO ] 
+SIM-05: Crear AlquilerEquipo con datos válidos
+[2026-05-13 09:22:27] [INFO ]   Servicio creado → SRV-0002 | Laptop Dell
+[2026-05-13 09:22:27] [INFO ] 
+SIM-06: Crear AsesoriaEspecializada con nivel 'dios' (inválido)
+[2026-05-13 09:22:27] [INFO ]   Excepción capturada correctamente → [ERR_SERVICIO] Servicio 'Consultoría' no disponible. Nivel 'dios' inválido. Use: ['junior', 'senior', 'experto'] (09:22:27)
+[2026-05-13 09:22:27] [INFO ] 
+SIM-07: Crear reserva válida (cliente SIM-01 + sala SIM-04, 3h)
+[2026-05-13 09:22:27] [INFO ]   Reserva creada → Ana Torres | Sala Orion | Total: $150,000.00
+[2026-05-13 09:22:27] [INFO ] 
+SIM-08: Reserva con duración 25h en ReservaSala (máx 12h)
+[2026-05-13 09:22:27] [INFO ]   DuracionInvalidaError capturada → [ERR_DURACION] Duración 25h fuera del rango permitido [1.0h – 12.0h] (09:22:27)
+[2026-05-13 09:22:27] [INFO ] 
+SIM-09: Intentar usar servicio marcado como NO disponible
+[2026-05-13 09:22:27] [INFO ]   ServicioNoDisponibleError capturada → [ERR_SERVICIO] Servicio 'Sala Cerrada' no disponible. El servicio está marcado como no disponible. (09:22:27)
+[2026-05-13 09:22:27] [INFO ] 
+SIM-10: Crear servicio con precio base negativo (-5000)
+[2026-05-13 09:22:27] [INFO ]   Excepción capturada → [ERR_COSTO] Error en cálculo de costo: El precio base no puede ser negativo: -5000 (09:22:27)
+[2026-05-13 09:22:27] [INFO ] 
+SIM-11: Ciclo completo pendiente→confirmada→procesada
+[2026-05-13 09:22:27] [INFO ]   Estados recorridos OK → estado final: procesada
+[2026-05-13 09:22:27] [INFO ] 
+SIM-12: Cancelar una reserva que ya fue cancelada (error esperado)
+[2026-05-13 09:22:27] [INFO ]   EstadoInvalidoError capturada → La reserva ya está cancelada.
+[2026-05-13 09:22:27] [INFO ] 
+───────────────────────────────────────────────────────
+[2026-05-13 09:22:27] [INFO ] RESUMEN: 12 simulaciones | ✅ 12 correctas | ❌ 0 fallidas
+[2026-05-13 09:22:27] [INFO ] Log guardado en: software_fj.log
+[2026-05-13 09:22:27] [INFO ] ───────────────────────────────────────────────────────
